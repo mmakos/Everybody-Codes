@@ -6,7 +6,7 @@
 constexpr int quest = 1;
 constexpr int year = 2024;
 
-int getPotionsForEnemy(char enemy) {
+int getPotionsForEnemy(const char enemy) {
   switch (enemy) {
     case 'A':
       return 0;
@@ -21,12 +21,11 @@ int getPotionsForEnemy(char enemy) {
   }
 }
 
-int getPotionsForEnemies(std::string::const_iterator &it, int length) {
+int getPotionsForEnemies(std::string::const_iterator &it, const int length) {
   int potions = 0;
   int enemies = 0;
   for (int i = 0; i < length; ++i, ++it) {
-    int pots = getPotionsForEnemy(*it);
-    if (pots >= 0) {
+    if (const int pots = getPotionsForEnemy(*it); pots >= 0) {
       potions += pots;
       ++enemies;
     }
@@ -34,7 +33,7 @@ int getPotionsForEnemies(std::string::const_iterator &it, int length) {
   return potions + enemies * (enemies - 1);
 }
 
-int solve(int task) {
+int solve(const int task) {
   const std::string input = ec::readInput<std::string>(year, quest, task)[0];
   int sum = 0;
   auto it = input.begin();

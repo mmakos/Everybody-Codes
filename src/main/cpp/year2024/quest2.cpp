@@ -22,25 +22,25 @@ struct PointHash {
 };
 
 void markSymbols(std::unordered_set<Point, PointHash> &symbols, const std::string &text,
-                 const std::string &word, int coord, bool horizontal, bool wrap) {
+                 const std::string &word, const int coord, const bool horizontal, const bool wrap) {
   const std::regex regex(word);
   const std::string text2 = wrap ? (text + text) : text; // for wrapping
-  auto end = wrap ? (text2.begin() + (int) text2.length() / 2) : text2.end();
+  auto end = wrap ? (text2.begin() + static_cast<int>(text2.length()) / 2) : text2.end();
   std::smatch match;
   for (auto i = text2.begin(); i != end && std::regex_search(i, text2.end(), match, regex); i += match.position() + 1) {
     for (auto j = 0; j < match.length(); ++j) {
       auto a = (j + match.position() + (i - text2.begin())) % text.length();
-      Point p = horizontal ? Point((int) a, coord) : Point(coord, (int) a);
+      Point p = horizontal ? Point(static_cast<int>(a), coord) : Point(coord, static_cast<int>(a));
       symbols.insert(p);
     }
   }
 }
 
 void markSymbols(std::unordered_set<Point, PointHash> &symbols, const std::string &text,
-                 const std::vector<std::string> &words, int coord, bool horizontal = true, bool wrap = false) {
+                 const std::vector<std::string> &words, const int coord, const bool horizontal = true, const bool wrap = false) {
   for (const auto &word: words) {
     markSymbols(symbols, text, word, coord, horizontal, wrap);
-    const std::string reversed = std::string(word.rbegin(), word.rend());
+    const auto reversed = std::string(word.rbegin(), word.rend());
     if (reversed != word) {
       markSymbols(symbols, text, reversed, coord, horizontal, wrap);
     }
@@ -70,7 +70,7 @@ int solve2() {
     markSymbols(symbols, input[i], words, i - 2);
   }
 
-  return (int) symbols.size();
+  return static_cast<int>(symbols.size());
 }
 
 int solve3() {
@@ -91,7 +91,7 @@ int solve3() {
   }
 
 
-  return (int) symbols.size();
+  return static_cast<int>(symbols.size());
 }
 
 int main() {
