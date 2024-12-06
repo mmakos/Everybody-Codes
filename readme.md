@@ -11,10 +11,10 @@ I try to make my solutions simple and clear, without any sophisticated, language
 
 C++ solutions are located in `main/cpp` directory. Code should compile with C++ 26 and CMake >= 3.27.
 
-Every year has its own directory, and every task its own (and only one) file.
-Inputs are stored in `input` directory - one dir per year and one txt file per task. I don't share input
+Every year has its own directory, and every quest its own (and only one) file (with solutions for all 3 tasks).
+Inputs are stored in `input` directory - one dir per year, one dir per quest and one file per task. I don't share input
 (as it is forbidden due to copyrights). In order to run a solution you have to copy your input
-(**without new line at the end of file**) into `input/yearYYYY/taskDD.txt` file.
+(**without new line at the end of file**) into `input/yearYYYY/questQQ/taskT.txt` file.
 
 _Good luck with solving **Everybody Codes** puzzles._
 
